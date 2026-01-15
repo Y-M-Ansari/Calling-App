@@ -4,6 +4,7 @@ import path from 'path';
 
 const app = express();
 
+// resolve() function returns absolute path
 const __dirname = path.resolve();
 
 app.get("/", (req, res)=>{
