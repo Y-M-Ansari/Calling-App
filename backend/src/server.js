@@ -12,7 +12,7 @@ app.get("/", (req, res)=>{
    res.status(200).json({msg: "success from backend from server.js"});
 })
 
-
+// combine the frontend and backend 
 if(ENV.NODE_ENV === 'production'){
    app.use(express.static(path.join(__dirname, "../frontend/dist")));
    
