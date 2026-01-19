@@ -6,10 +6,11 @@ const app = express();
 
 // resolve() function returns absolute path
 const __dirname = path.resolve();
-
+console.log("absolutepath -->" ,__dirname);
 app.get("/", (req, res)=>{
    res.status(200).json({msg: "success from backend from server.js"});
 })
+
 
 if(ENV.NODE_ENV === 'production'){
    app.use(express.static(path.join(__dirname, "../frontend/dist")));
@@ -19,4 +20,13 @@ if(ENV.NODE_ENV === 'production'){
    });
 }
 
-app.listen(ENV.PORT, ()=> console.log("Server is running on port 3000"));
+const startServer = async () => {
+   try{
+      await connectDB();
+      app.listen(ENV.PORT, ()=> console.log("Server is running on port 3000"));
+   }catch(error){
+      console.error("Error starting the server", error);
+   }
+}
+
+startServer();
